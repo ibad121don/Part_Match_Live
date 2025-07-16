@@ -1,11 +1,22 @@
-
 import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { CreditCard, Smartphone, Phone } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
@@ -16,38 +27,39 @@ interface PaymentModalProps {
   onClose: () => void;
   offerId: string;
   amount: number;
+  currency?: string;
   onPaymentSuccess: () => void;
 }
 
-interface PaymentResponse {
-  success: boolean;
-  error?: string;
-  payment_id?: string;
-  amount?: number;
-  payment_method?: string;
-}
-
-const PaymentModal = ({ isOpen, onClose, offerId, amount, onPaymentSuccess }: PaymentModalProps) => {
-  const [paymentMethod, setPaymentMethod] = useState<string>("");
-  const [mobileProvider, setMobileProvider] = useState<string>("");
-  const [mobileNumber, setMobileNumber] = useState<string>("");
+const PaymentModal = ({
+  isOpen,
+  onClose,
+  offerId,
+  amount,
+  currency = "GHS",
+  onPaymentSuccess,
+}: PaymentModalProps) => {
+  const [paymentMethod, setPaymentMethod] = useState<string>("stripe");
   const [loading, setLoading] = useState(false);
 
   const handlePayment = async () => {
+    let userMail = await localStorage.getItem("profiles");
+    console.log("PaymentModal: User email from localStorage:", userMail);
+    if (!userMail) {
+      toast({
+        title: "User not found",
+        description: "Please log in to proceed with payment.",
+        variant: "destructive",
+      });
+      return;
+    }
+    let tempUser = JSON.parse(userMail);
+    console.log("PaymentModal: Parsed user data:", tempUser);
     if (!paymentMethod) {
       toast({
         title: "Payment Method Required",
         description: "Please select a payment method.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    if (paymentMethod === 'mobile_money' && (!mobileProvider || !mobileNumber)) {
-      toast({
-        title: "Mobile Money Details Required",
-        description: "Please enter your mobile money provider and number.",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -55,49 +67,64 @@ const PaymentModal = ({ isOpen, onClose, offerId, amount, onPaymentSuccess }: Pa
     setLoading(true);
 
     try {
-      const { data, error } = await supabase.rpc('process_contact_unlock_payment', {
-        offer_id_param: offerId,
-        payment_method_param: paymentMethod,
-        mobile_money_provider_param: mobileProvider || null,
-        mobile_money_number_param: mobileNumber || null,
-        payment_reference_param: `PAY-${Date.now()}`
-      });
+      if (paymentMethod === "stripe") {
+        const response = await fetch(
+          "https://partmatchbackend-production.up.railway.app/api/v1/stripe/onetimestripe",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              offerId,
+              amount,
+              currency,
+              receiptEmail: tempUser.email || "Testmail@gmail.com",
+            }),
+          }
+        );
 
-      if (error) throw error;
+        const contentType = response.headers.get("content-type");
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(text || "Failed to create Stripe session");
+        }
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Invalid response format from server");
+        }
 
-      const response = data as unknown as PaymentResponse;
+        const data = await response.json();
 
-      if (response.success) {
-        // Simulate payment processing (in real app, integrate with Paystack/Flutterwave)
-        setTimeout(() => {
-          // Update offer to unlock contact
-          supabase
-            .from('offers')
-            .update({ contact_unlocked: true })
-            .eq('id', offerId)
-            .then(() => {
-              toast({
-                title: "Payment Successful!",
-                description: "Contact details have been unlocked.",
-              });
-              onPaymentSuccess();
-              onClose();
-            });
-        }, 2000);
+        if (!data?.success) {
+          throw new Error(data.message || "Stripe session creation failed");
+        }
 
-        toast({
-          title: "Processing Payment",
-          description: "Please wait while we process your payment...",
+        // Prefer redirect using Stripe Checkout hosted URL if available
+        if (data.url) {
+          window.location.href = data.url;
+          return;
+        }
+
+        const stripe = await loadStripe(data.publishableKey);
+        if (!stripe) throw new Error("Stripe.js failed to load");
+
+        const result = await stripe.redirectToCheckout({
+          sessionId: data.sessionId,
         });
-      } else {
-        throw new Error(response.error || 'Payment processing failed');
+
+        if (result.error) throw result.error;
+        return;
       }
+
+      toast({
+        title: "Paystack Not Available",
+        description: "Paystack integration is not implemented yet.",
+        variant: "destructive",
+      });
     } catch (error: any) {
-      console.error('Payment error:', error);
+      console.error("Payment error:", error);
       toast({
         title: "Payment Failed",
-        description: error.message || "Please try again.",
-        variant: "destructive"
+        description: error?.message || "Please try again later.",
+        variant: "destructive",
       });
     } finally {
       setLoading(false);
@@ -116,8 +143,12 @@ const PaymentModal = ({ isOpen, onClose, offerId, amount, onPaymentSuccess }: Pa
 
         <div className="space-y-4 sm:space-y-6">
           <div className="text-center">
-            <p className="text-xl sm:text-2xl font-bold text-green-600">GHS {amount.toFixed(2)}</p>
-            <p className="text-xs sm:text-sm text-gray-600">One-time fee to unlock contact details</p>
+            <p className="text-xl sm:text-2xl font-bold text-green-600">
+              {currency} {amount.toFixed(2)}
+            </p>
+            <p className="text-xs sm:text-sm text-gray-600">
+              One-time fee to unlock contact details
+            </p>
           </div>
 
           <div className="space-y-3 sm:space-y-4">
@@ -128,58 +159,34 @@ const PaymentModal = ({ isOpen, onClose, offerId, amount, onPaymentSuccess }: Pa
                   <SelectValue placeholder="Select payment method" />
                 </SelectTrigger>
                 <SelectContent className="bg-white z-50">
-                  <SelectItem value="mobile_money">
-                    <div className="flex items-center gap-2">
-                      <Smartphone className="h-3 w-3 sm:h-4 sm:w-4" />
-                      Mobile Money
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="bank_card">
+                  <SelectItem value="stripe">
                     <div className="flex items-center gap-2">
                       <CreditCard className="h-3 w-3 sm:h-4 sm:w-4" />
-                      Bank Card
+                      Stripe
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="paystack">
+                    <div className="flex items-center gap-2">
+                      <CreditCard className="h-3 w-3 sm:h-4 sm:w-4" />
+                      Paystack
                     </div>
                   </SelectItem>
                 </SelectContent>
               </Select>
             </div>
-
-            {paymentMethod === 'mobile_money' && (
-              <>
-                <div>
-                  <Label className="text-xs sm:text-sm">Mobile Money Provider</Label>
-                  <Select value={mobileProvider} onValueChange={setMobileProvider}>
-                    <SelectTrigger className="text-sm">
-                      <SelectValue placeholder="Select provider" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white z-50">
-                      <SelectItem value="mtn">MTN Mobile Money</SelectItem>
-                      <SelectItem value="vodafone">Vodafone Cash</SelectItem>
-                      <SelectItem value="airteltigo">AirtelTigo Money</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label className="text-xs sm:text-sm">Mobile Number</Label>
-                  <Input
-                    type="tel"
-                    placeholder="0XX XXX XXXX"
-                    value={mobileNumber}
-                    onChange={(e) => setMobileNumber(e.target.value)}
-                    className="text-sm"
-                  />
-                </div>
-              </>
-            )}
           </div>
 
           <div className="flex gap-2 sm:gap-3">
-            <Button variant="outline" onClick={onClose} className="flex-1 text-xs sm:text-sm">
+            <Button
+              variant="outline"
+              onClick={onClose}
+              className="flex-1 text-xs sm:text-sm"
+              disabled={loading}
+            >
               Cancel
             </Button>
-            <Button 
-              onClick={handlePayment} 
+            <Button
+              onClick={handlePayment}
               disabled={loading}
               className="flex-1 bg-green-600 hover:bg-green-700 text-xs sm:text-sm"
             >

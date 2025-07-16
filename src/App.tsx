@@ -36,6 +36,7 @@ import ButtonTestPage from "./pages/ButtonTestPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import SellerProtectedRoute from "./components/SellerProtectedRoute";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import Success from "./pages/Success";
 
 const queryClient = new QueryClient();
 
@@ -147,6 +148,7 @@ function App() {
                   <Route path="/simple-auth" element={<SimpleAuth />} />
                   <Route path="/button-test" element={<ButtonTestPage />} />
                   <Route path="*" element={<NotFound />} />
+                  <Route path="/success" element={<Success />} />
                 </Routes>
 
                 <PWANotificationManager />

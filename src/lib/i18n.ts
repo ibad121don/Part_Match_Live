@@ -1,5 +1,5 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
 // Translation resources
 const resources = {
@@ -20,7 +20,7 @@ const resources = {
       delete: "Delete",
       search: "Search",
       filter: "Filter",
-      
+
       // Dashboard
       buyerDashboard: "Buyer Dashboard",
       welcomeBack: "Welcome back",
@@ -34,7 +34,7 @@ const resources = {
       saved: "Saved",
       alerts: "Alerts",
       rate: "Rate",
-      
+
       // Country & Currency
       selectCountry: "Select Country",
       countryCurrency: "Country & Currency",
@@ -48,8 +48,9 @@ const resources = {
       detecting: "Detecting...",
       detectingLocation: "Detecting location...",
       selectYourCountry: "Select Your Country",
-      chooseCountryDescription: "Choose your country to automatically set the appropriate currency for pricing.",
-      
+      chooseCountryDescription:
+        "Choose your country to automatically set the appropriate currency for pricing.",
+
       // Navigation
       home: "Home",
       browse: "Browse Parts",
@@ -59,10 +60,11 @@ const resources = {
       signIn: "Sign In",
       signOut: "Sign Out",
       signUp: "Sign Up",
-      
+
       // Hero Section
       heroTitle: "Find & Sell Car Parts",
-      heroSubtitle: "The easiest way to find and order car parts. Compare prices from trusted sellers and get quality parts delivered to your door.",
+      heroSubtitle:
+        "The easiest way to find and order car parts. Compare prices from trusted sellers and get quality parts delivered to your door.",
       requestCarParts: "Request Car Parts",
       findCarParts: "Find Car Parts",
       sellCarParts: "Sell Car Parts",
@@ -70,7 +72,7 @@ const resources = {
       findPartsAndRequests: "Find parts for sale and buyer requests",
       partsForSale: "Parts for Sale",
       requestedParts: "Requested Parts",
-      
+
       // Quick Actions & Navigation
       quickActions: "Quick Actions",
       findAvailableParts: "Find available parts",
@@ -84,7 +86,7 @@ const resources = {
       active: "Active",
       makeOffer: "Make Offer",
       contact: "Contact",
-      
+
       // Categories
       popularCategories: "Popular Categories",
       engineParts: "Engine Parts",
@@ -92,7 +94,7 @@ const resources = {
       suspension: "Suspension",
       bodyParts: "Body Parts",
       parts: "parts",
-      
+
       // Stats
       fastReliable: "Fast & Reliable",
       connectWithSellers: "Connect with verified sellers in your region",
@@ -100,7 +102,7 @@ const resources = {
       sellers: "Sellers",
       users: "Users",
       regions: "Regions",
-      
+
       // Authentication
       email: "Email",
       password: "Password",
@@ -112,21 +114,21 @@ const resources = {
       country: "Country",
       language: "Language",
       currency: "Currency",
-      
+
       // User Types
       buyer: "Buyer",
       seller: "Seller",
       admin: "Administrator",
-      
+
       // Form Validation
       required: "Required",
       invalidEmail: "Invalid email address",
       passwordTooShort: "Password must be at least 6 characters",
-      
+
       // Success Messages
       profileUpdated: "Profile updated successfully",
       registrationSuccessful: "Registration successful!",
-      
+
       // Error Messages
       somethingWentWrong: "Something went wrong",
       tryAgain: "Please try again",
@@ -135,9 +137,9 @@ const resources = {
       ratings: {
         noRatings: "No ratings yet",
         reviewCount: "({{count}} review{{count !== 1 ? 's' : ''}})",
-        topRated: "Top Rated"
+        topRated: "Top Rated",
       },
-    }
+    },
   },
   fr: {
     translation: {
@@ -156,7 +158,7 @@ const resources = {
       delete: "Supprimer",
       search: "Rechercher",
       filter: "Filtrer",
-      
+
       // Dashboard
       buyerDashboard: "Tableau de bord acheteur",
       welcomeBack: "Bon retour",
@@ -170,22 +172,25 @@ const resources = {
       saved: "Sauvé",
       alerts: "Alertes",
       rate: "Noter",
-      
+
       // Country & Currency
       selectCountry: "Sélectionner le pays",
       countryCurrency: "Pays et devise",
-      selectCountryToSetCurrency: "Sélectionnez votre pays pour définir la devise",
+      selectCountryToSetCurrency:
+        "Sélectionnez votre pays pour définir la devise",
       countryUpdated: "Pays mis à jour",
       locationSetTo: "Votre emplacement a été défini sur",
       andCurrencyTo: "et la devise sur",
       updateFailed: "Échec de la mise à jour",
-      failedToUpdateCountry: "Échec de la mise à jour de votre pays. Veuillez réessayer.",
+      failedToUpdateCountry:
+        "Échec de la mise à jour de votre pays. Veuillez réessayer.",
       autoDetectLocation: "Détecter automatiquement ma position",
       detecting: "Détection...",
       detectingLocation: "Détection de l'emplacement...",
       selectYourCountry: "Sélectionnez votre pays",
-      chooseCountryDescription: "Choisissez votre pays pour définir automatiquement la devise appropriée pour la tarification.",
-      
+      chooseCountryDescription:
+        "Choisissez votre pays pour définir automatiquement la devise appropriée pour la tarification.",
+
       // Navigation
       home: "Accueil",
       browse: "Parcourir les pièces",
@@ -195,18 +200,20 @@ const resources = {
       signIn: "Se connecter",
       signOut: "Se déconnecter",
       signUp: "S'inscrire",
-      
+
       // Hero Section
       heroTitle: "Trouver et vendre des pièces auto",
-      heroSubtitle: "Le moyen le plus simple de trouver et commander des pièces auto. Comparez les prix de vendeurs de confiance.",
+      heroSubtitle:
+        "Le moyen le plus simple de trouver et commander des pièces auto. Comparez les prix de vendeurs de confiance.",
       requestCarParts: "Demander des pièces auto",
       findCarParts: "Trouver des pièces auto",
       sellCarParts: "Vendre des pièces auto",
       browseParts: "Parcourir les pièces",
-      findPartsAndRequests: "Trouver des pièces à vendre et des demandes d'acheteurs",
+      findPartsAndRequests:
+        "Trouver des pièces à vendre et des demandes d'acheteurs",
       partsForSale: "Pièces à vendre",
       requestedParts: "Pièces demandées",
-      
+
       // Quick Actions & Navigation
       quickActions: "Actions rapides",
       findAvailableParts: "Trouver les pièces disponibles",
@@ -220,7 +227,7 @@ const resources = {
       active: "Actif",
       makeOffer: "Faire une offre",
       contact: "Contact",
-      
+
       // Categories
       popularCategories: "Catégories populaires",
       engineParts: "Pièces moteur",
@@ -228,15 +235,16 @@ const resources = {
       suspension: "Suspension",
       bodyParts: "Pièces de carrosserie",
       parts: "pièces",
-      
+
       // Stats
       fastReliable: "Rapide et fiable",
-      connectWithSellers: "Connectez-vous avec des vendeurs vérifiés dans votre région",
+      connectWithSellers:
+        "Connectez-vous avec des vendeurs vérifiés dans votre région",
       activeParts: "Pièces actives",
       sellers: "Vendeurs",
       users: "Utilisateurs",
       regions: "Régions",
-      
+
       // Authentication
       email: "Email",
       password: "Mot de passe",
@@ -248,26 +256,26 @@ const resources = {
       country: "Pays",
       language: "Langue",
       currency: "Devise",
-      
+
       // User Types
       buyer: "Acheteur",
       seller: "Vendeur",
       admin: "Administrateur",
-      
+
       // Form Validation
       required: "Requis",
       invalidEmail: "Adresse email invalide",
       passwordTooShort: "Le mot de passe doit contenir au moins 6 caractères",
-      
+
       // Success Messages
       profileUpdated: "Profil mis à jour avec succès",
       registrationSuccessful: "Inscription réussie!",
-      
+
       // Error Messages
       error: "Erreur",
       somethingWentWrong: "Quelque chose s'est mal passé",
       tryAgain: "Veuillez réessayer",
-    }
+    },
   },
   sw: {
     translation: {
@@ -286,7 +294,7 @@ const resources = {
       delete: "Futa",
       search: "Tafuta",
       filter: "Chuja",
-      
+
       // Dashboard
       buyerDashboard: "Dashibodi ya Mnunuzi",
       welcomeBack: "Karibu tena",
@@ -300,7 +308,7 @@ const resources = {
       saved: "Imehifadhiwa",
       alerts: "Arifa",
       rate: "Kadiria",
-      
+
       // Country & Currency
       selectCountry: "Chagua Nchi",
       countryCurrency: "Nchi na Sarafu",
@@ -309,13 +317,15 @@ const resources = {
       locationSetTo: "Mahali pako pamewekwa",
       andCurrencyTo: "na sarafu",
       updateFailed: "Kusasisha Kumeshindikana",
-      failedToUpdateCountry: "Kushindikana kusasisha nchi yako. Tafadhali jaribu tena.",
+      failedToUpdateCountry:
+        "Kushindikana kusasisha nchi yako. Tafadhali jaribu tena.",
       autoDetectLocation: "Gundua mahali pangu kiotomatiki",
       detecting: "Inapata...",
       detectingLocation: "Inapata mahali...",
       selectYourCountry: "Chagua Nchi Yako",
-      chooseCountryDescription: "Chagua nchi yako ili kuwezesha sarafu inayofaa kwa bei kiotomatiki.",
-      
+      chooseCountryDescription:
+        "Chagua nchi yako ili kuwezesha sarafu inayofaa kwa bei kiotomatiki.",
+
       // Navigation
       home: "Nyumbani",
       browse: "Angalia Vipengee",
@@ -325,10 +335,11 @@ const resources = {
       signIn: "Ingia",
       signOut: "Toka",
       signUp: "Jisajili",
-      
+
       // Hero Section
       heroTitle: "Pata na Uze Vipengee vya Magari",
-      heroSubtitle: "Njia rahisi ya kupata na kuagiza vipengee vya magari. Linganisha bei kutoka kwa wachuuzi waaminifu na upate vipengee vya ubora.",
+      heroSubtitle:
+        "Njia rahisi ya kupata na kuagiza vipengee vya magari. Linganisha bei kutoka kwa wachuuzi waaminifu na upate vipengee vya ubora.",
       requestCarParts: "Omba Vipengee vya Gari",
       findCarParts: "Pata Vipengee vya Gari",
       sellCarParts: "Uza Vipengee vya Gari",
@@ -336,7 +347,7 @@ const resources = {
       findPartsAndRequests: "Pata vipengee vya kuuza na maombi ya wanunuzi",
       partsForSale: "Vipengee vya Kuuza",
       requestedParts: "Vipengee Vilivyoombwa",
-      
+
       // Quick Actions & Navigation
       quickActions: "Vitendo vya Haraka",
       findAvailableParts: "Pata vipengee vinavyopatikana",
@@ -350,7 +361,7 @@ const resources = {
       active: "Hai",
       makeOffer: "Toa Onyesho",
       contact: "Mawasiliano",
-      
+
       // Categories
       popularCategories: "Makundi Maarufu",
       engineParts: "Vipengee vya Injini",
@@ -358,15 +369,16 @@ const resources = {
       suspension: "Kusimamisha",
       bodyParts: "Vipengee vya Mwili",
       parts: "vipengee",
-      
+
       // Stats
       fastReliable: "Haraka na Kuaminika",
-      connectWithSellers: "Unganishwa na wachuuzi waliohakikishwa katika eneo lako",
+      connectWithSellers:
+        "Unganishwa na wachuuzi waliohakikishwa katika eneo lako",
       activeParts: "Vipengee hai",
       sellers: "Wachuuzi",
       users: "Watumiaji",
       regions: "Mikoa",
-      
+
       // Authentication
       email: "Barua pepe",
       password: "Nywila",
@@ -378,26 +390,26 @@ const resources = {
       country: "Nchi",
       language: "Lugha",
       currency: "Sarafu",
-      
+
       // User Types
       buyer: "Mnunuzi",
       seller: "Muuzaji",
       admin: "Msimamizi",
-      
+
       // Form Validation
       required: "Inahitajika",
       invalidEmail: "Anwani ya barua pepe si sahihi",
       passwordTooShort: "Nywila lazima iwe na angalau herufi 6",
-      
+
       // Success Messages
       profileUpdated: "Wasifu umebadilishwa kwa mafanikio",
       registrationSuccessful: "Usajili umefanikiwa!",
-      
+
       // Error Messages
       error: "Hitilafu",
       somethingWentWrong: "Kuna kitu kimekwenda vibaya",
       tryAgain: "Tafadhali jaribu tena",
-    }
+    },
   },
   tw: {
     translation: {
@@ -416,7 +428,7 @@ const resources = {
       delete: "Yi fi",
       search: "Hwehwɛ",
       filter: "Susuw",
-      
+
       // Dashboard
       buyerDashboard: "Otɔni Dashboard",
       welcomeBack: "Yɛma wo akwaaba bio",
@@ -430,7 +442,7 @@ const resources = {
       saved: "Wɔakoraa",
       alerts: "Amanebɔ",
       rate: "Bu",
-      
+
       // Country & Currency
       selectCountry: "Paw Ɔman",
       countryCurrency: "Ɔman ne Sika",
@@ -445,7 +457,7 @@ const resources = {
       detectingLocation: "Ɛrehwehwɛ baabi...",
       selectYourCountry: "Paw Wo Man",
       chooseCountryDescription: "Paw wo man na sika a ɛfata no bɛba ankasa.",
-      
+
       // Navigation
       home: "Fie",
       browse: "Hwɛ Nneɛma",
@@ -455,10 +467,11 @@ const resources = {
       signIn: "Wuraa mu",
       signOut: "Fi adi",
       signUp: "Kyerɛw wo din",
-      
+
       // Hero Section
       heroTitle: "Hwehwɛ na Tɔn Kar Nneɛma",
-      heroSubtitle: "Ɔkwan a ɛyɛ mmerɛw sen biara a wobɛfa so ahwehwɛ na woatɔ kar nneɛma. Ka bo ahodoɔ ho asɛm kyerɛ adetɔnfoɔ a wogye wɔn di.",
+      heroSubtitle:
+        "Ɔkwan a ɛyɛ mmerɛw sen biara a wobɛfa so ahwehwɛ na woatɔ kar nneɛma. Ka bo ahodoɔ ho asɛm kyerɛ adetɔnfoɔ a wogye wɔn di.",
       requestCarParts: "Bisa Kar Nneɛma",
       findCarParts: "Hwehwɛ Kar Nneɛma",
       sellCarParts: "Tɔn Kar Nneɛma",
@@ -466,7 +479,7 @@ const resources = {
       findPartsAndRequests: "Hwehwɛ nneɛma a wobɛtɔn ne nsɛm a wɔabisa",
       partsForSale: "Nneɛma a Wobɛtɔn",
       requestedParts: "Nneɛma a Wɔabisa",
-      
+
       // Quick Actions & Navigation
       quickActions: "Ntɛm Dwumadie",
       findAvailableParts: "Hwehwɛ nneɛma a ɛwɔ hɔ",
@@ -480,7 +493,7 @@ const resources = {
       active: "Ɛreyɛ Adwuma",
       makeOffer: "Ma Nhyɛsoɔ",
       contact: "Kasa",
-      
+
       // Categories
       popularCategories: "Nneɛma a Agye Din",
       engineParts: "Injin Nneɛma",
@@ -488,7 +501,7 @@ const resources = {
       suspension: "Ntwentwɛn",
       bodyParts: "Nipadua Nneɛma",
       parts: "nneɛma",
-      
+
       // Stats
       fastReliable: "Ntɛm & Ahotoso",
       connectWithSellers: "Fa wo ho ka adetɔnfoɔ a wɔahwɛ wɔn ho wɔ wo mpɔtam",
@@ -496,7 +509,7 @@ const resources = {
       sellers: "Adetɔnfoɔ",
       users: "Adefoofoɔ",
       regions: "Mpɔtam",
-      
+
       // Authentication
       email: "Email",
       password: "Password",
@@ -508,26 +521,26 @@ const resources = {
       country: "Ɔman",
       language: "Kasa",
       currency: "Sika",
-      
+
       // User Types
       buyer: "Otɔni",
       seller: "Odetɔnni",
       admin: "Ɔsoadwumayɛni",
-      
+
       // Form Validation
       required: "Ɛho hia",
       invalidEmail: "Email address no nyɛ",
       passwordTooShort: "Password no sua koraa ɛsɛ sɛ ɛyɛ nkyerɛwde 6",
-      
+
       // Success Messages
       profileUpdated: "Wɔasesa profile no yiye",
       registrationSuccessful: "Wɔde wo din akyerɛw yiye!",
-      
+
       // Error Messages
       error: "Mfomso",
       somethingWentWrong: "Biribi ankasa nyɛ yiye",
       tryAgain: "Yɛ srɛ wo sɔ bio",
-    }
+    },
   },
   yo: {
     translation: {
@@ -546,7 +559,7 @@ const resources = {
       delete: "Pa rẹ",
       search: "Wa",
       filter: "Se ayẹwo",
-      
+
       // Dashboard
       buyerDashboard: "Dashboard Oniranu",
       welcomeBack: "Eku abo pada",
@@ -560,7 +573,7 @@ const resources = {
       saved: "Ti a fi pamọ",
       alerts: "Awọn Iwifun",
       rate: "Ṣe idajo",
-      
+
       // Country & Currency
       selectCountry: "Yan Orilẹ-ede",
       countryCurrency: "Orilẹ-ede ati Owọ",
@@ -569,13 +582,15 @@ const resources = {
       locationSetTo: "Ipo rẹ ti fi si",
       andCurrencyTo: "ati owọ si",
       updateFailed: "Imudojuiwọn Ko Ṣaṣeyọri",
-      failedToUpdateCountry: "Ko ṣaṣeyọri lati mu orilẹ-ede rẹ ṣe imudojuiwọn. Jọwọ gbiyanju lẹẹkansi.",
+      failedToUpdateCountry:
+        "Ko ṣaṣeyọri lati mu orilẹ-ede rẹ ṣe imudojuiwọn. Jọwọ gbiyanju lẹẹkansi.",
       autoDetectLocation: "Ṣe ayẹwo ipo mi laifọwọyi",
       detecting: "N wa...",
       detectingLocation: "N wa ipo...",
       selectYourCountry: "Yan Orilẹ-ede Rẹ",
-      chooseCountryDescription: "Yan orilẹ-ede rẹ lati ṣeto owọ ti o yẹ fun idiyele laifọwọyi.",
-      
+      chooseCountryDescription:
+        "Yan orilẹ-ede rẹ lati ṣeto owọ ti o yẹ fun idiyele laifọwọyi.",
+
       // Navigation
       home: "Ile",
       browse: "Wo awọn ẹya",
@@ -585,10 +600,11 @@ const resources = {
       signIn: "Wọle",
       signOut: "Jade",
       signUp: "Forukọsilẹ",
-      
+
       // Hero Section
       heroTitle: "Wa ati Ta Awọn Ẹya Ọkọ",
-      heroSubtitle: "Ọna ti o rọrun julọ lati wa ati gba awọn ẹya ọkọ. Ṣe afiwe awọn idiyele lati ọdọ awọn oluta ti o gbẹkẹle.",
+      heroSubtitle:
+        "Ọna ti o rọrun julọ lati wa ati gba awọn ẹya ọkọ. Ṣe afiwe awọn idiyele lati ọdọ awọn oluta ti o gbẹkẹle.",
       requestCarParts: "Beere Awọn Ẹya Ọkọ",
       findCarParts: "Wa Awọn Ẹya Ọkọ",
       sellCarParts: "Ta Awọn Ẹya Ọkọ",
@@ -596,7 +612,7 @@ const resources = {
       findPartsAndRequests: "Wa awọn ẹya fun tita ati awọn ibeere oniranu",
       partsForSale: "Awọn Ẹya Fun Tita",
       requestedParts: "Awọn Ẹya Ti A Beere",
-      
+
       // Quick Actions & Navigation
       quickActions: "Awọn Iṣe Kiakia",
       findAvailableParts: "Wa awọn ẹya ti o wa",
@@ -610,7 +626,7 @@ const resources = {
       active: "Ti N Lọ",
       makeOffer: "Ṣe Ifilagba",
       contact: "Kan Si",
-      
+
       // Categories
       popularCategories: "Awọn Ẹka Olokiki",
       engineParts: "Awọn Ẹya Enjini",
@@ -618,7 +634,7 @@ const resources = {
       suspension: "Duduro",
       bodyParts: "Awọn Ẹya Ara",
       parts: "awọn ẹya",
-      
+
       // Stats
       fastReliable: "Kiakia & Gbẹkẹle",
       connectWithSellers: "Sopọ pẹlu awọn oluta ti a ti rii daju ni agbegbe rẹ",
@@ -626,7 +642,7 @@ const resources = {
       sellers: "Awọn Oluta",
       users: "Awọn Olumulo",
       regions: "Awọn Agbegbe",
-      
+
       // Authentication
       email: "Email",
       password: "Ọrọ aṣina",
@@ -638,42 +654,40 @@ const resources = {
       country: "Orilẹ-ede",
       language: "Ede",
       currency: "Owọ",
-      
+
       // User Types
       buyer: "Oniranu",
       seller: "Oluta",
       admin: "Alakoso",
-      
+
       // Form Validation
       required: "O nilo",
       invalidEmail: "Adirẹsi email ti ko tọ",
       passwordTooShort: "Ọrọ aṣina gbọdọ jẹ o kere ju awọn kikọ 6",
-      
+
       // Success Messages
       profileUpdated: "Profaili ti di imudojuiwọn ni aṣeyọri",
       registrationSuccessful: "Iforukọsilẹ aṣeyọri!",
-      
+
       // Error Messages
       error: "Aṣiṣe",
       somethingWentWrong: "Nkankan ti lọ aṣiṣe",
       tryAgain: "Jọwọ gbiyanju lẹẹkansi",
-    }
-  }
+    },
+  },
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: localStorage.getItem('selectedLanguage') || 'en',
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false, // React already escapes values
-    },
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: localStorage.getItem("selectedLanguage") || "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false, // React already escapes values
+  },
+  detection: {
+    order: ["localStorage", "navigator"],
+    caches: ["localStorage"],
+  },
+});
 
 export default i18n;

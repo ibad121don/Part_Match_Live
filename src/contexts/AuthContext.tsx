@@ -340,7 +340,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         email,
         password,
       });
-
+      await localStorage.setItem(
+        "profiles",
+        JSON.stringify(data?.user?.user_metadata)
+      );
       console.log("AuthProvider: SignIn result:", {
         error,
         userData: data?.user?.id ? "User found" : "No user",

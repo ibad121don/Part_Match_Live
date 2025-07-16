@@ -1,5 +1,6 @@
-
 import { useState, useEffect } from "react";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { convertFromGHS } from "@/utils/exchangeRates";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +16,9 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
   const [subscription, setSubscription] = useState<any>(null);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { country, currency } = useGeolocation();
+  const subscriptionBaseGHS = 100;
+  const displayAmount = convertFromGHS(subscriptionBaseGHS, currency || "GHS");
 
   useEffect(() => {
     fetchSubscription();
@@ -33,7 +37,8 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
   const handlePaymentSuccess = () => {
     toast({
       title: "Subscription Activated!",
-      description: "Your Business subscription is now active. Enjoy unlimited posts and featured listings!",
+      description:
+        "Your Business subscription is now active. Enjoy unlimited posts and featured listings!",
     });
     setShowPaymentModal(false);
     fetchSubscription();
@@ -42,7 +47,8 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
   const handleCancelSubscription = () => {
     toast({
       title: "Subscription Cancelled",
-      description: "Your subscription will remain active until the end of the current billing period.",
+      description:
+        "Your subscription will remain active until the end of the current billing period.",
     });
   };
 
@@ -69,7 +75,7 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
                 </div>
                 <Badge className="bg-green-100 text-green-800">Active</Badge>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-gray-600">Next billing date</p>
@@ -77,7 +83,13 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
                 </div>
                 <div>
                   <p className="text-gray-600">Amount</p>
-                  <p className="font-medium">GHS 100/month</p>
+                  <p className="font-medium">
+                    {currency || "GHS"}{" "}
+                    {displayAmount.toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}
+                    /month
+                  </p>
                 </div>
               </div>
 
@@ -97,8 +109,8 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
                   <CreditCard className="h-4 w-4 mr-2" />
                   Update Payment
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   size="sm"
                   onClick={handleCancelSubscription}
                 >
@@ -110,13 +122,20 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
             <div className="space-y-4">
               <div className="text-center py-6">
                 <Crown className="h-12 w-12 text-orange-600 mx-auto mb-4" />
-                <h3 className="font-semibold text-lg mb-2">Upgrade to Business</h3>
+                <h3 className="font-semibold text-lg mb-2">
+                  Upgrade to Business
+                </h3>
                 <p className="text-gray-600 mb-6">
                   Get unlimited posts, featured listings, and priority support
                 </p>
-                
+
                 <div className="bg-orange-50 rounded-lg p-4 mb-6">
-                  <div className="text-2xl font-bold text-orange-600 mb-1">GHS 100</div>
+                  <div className="text-2xl font-bold text-orange-600 mb-1">
+                    {currency || "GHS"}{" "}
+                    {displayAmount.toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}
+                  </div>
                   <div className="text-sm text-gray-600">per month</div>
                 </div>
 
@@ -143,8 +162,8 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
                   </li>
                 </ul>
 
-                <Button 
-                  onClick={handleSubscribe}
+                <Button
+                  onClick={() => setShowPaymentModal(true)}
                   className="w-full bg-orange-600 hover:bg-orange-700"
                 >
                   Start Business Subscription
@@ -172,7 +191,9 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
             <div className="flex justify-between items-center">
               <span className="text-sm">Business subscribers</span>
               <span className="font-semibold text-green-600">
-                {subscription?.is_active ? "First 50 sales free" : "3% per sale"}
+                {subscription?.is_active
+                  ? "First 50 sales free"
+                  : "3% per sale"}
               </span>
             </div>
             <p className="text-xs text-gray-600">
@@ -187,7 +208,8 @@ const SubscriptionManager = ({ sellerId }: SubscriptionManagerProps) => {
           isOpen={showPaymentModal}
           onClose={() => setShowPaymentModal(false)}
           offerId={sellerId}
-          amount={100}
+          amount={displayAmount}
+          currency={currency || "GHS"}
           onPaymentSuccess={handlePaymentSuccess}
         />
       )}
